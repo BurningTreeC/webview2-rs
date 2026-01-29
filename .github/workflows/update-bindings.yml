@@ -7,6 +7,11 @@ on:
         description: 'WebView2 SDK version (e.g., 1.0.3719.77)'
         required: true
         default: '1.0.3719.77'
+      force:
+        description: 'Force regeneration even if version matches'
+        required: false
+        type: boolean
+        default: false
   schedule:
     # Check for new versions weekly on Mondays
     - cron: '0 0 * * 1'
@@ -69,7 +74,11 @@ jobs:
           }
           Write-Host "Current version: $currentVersion"
           Write-Host "Target version: $env:WEBVIEW2_VERSION"
-          if ($currentVersion -eq $env:WEBVIEW2_VERSION) {
+          Write-Host "Force: ${{ inputs.force }}"
+          if ("${{ inputs.force }}" -eq "true") {
+            Write-Host "Force regeneration enabled"
+            "skip=false" >> $env:GITHUB_OUTPUT
+          } elseif ($currentVersion -eq $env:WEBVIEW2_VERSION) {
             "skip=true" >> $env:GITHUB_OUTPUT
           } else {
             "skip=false" >> $env:GITHUB_OUTPUT
