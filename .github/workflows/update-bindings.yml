@@ -58,17 +58,22 @@ jobs:
 
       - name: Check if update needed
         id: check-update
-        shell: bash
+        shell: pwsh
         working-directory: webview2-rs
         run: |
-          CURRENT_VERSION=$(grep 'WEBVIEW2_VERSION' crates/update-bindings/src/main.rs | grep -oP '\d+\.\d+\.\d+\.\d+')
-          echo "Current version: $CURRENT_VERSION"
-          echo "Target version: $WEBVIEW2_VERSION"
-          if [ "$CURRENT_VERSION" == "$WEBVIEW2_VERSION" ]; then
-            echo "skip=true" >> $GITHUB_OUTPUT
-          else
-            echo "skip=false" >> $GITHUB_OUTPUT
-          fi
+          $content = Get-Content crates/update-bindings/src/main.rs -Raw
+          if ($content -match 'WEBVIEW2_VERSION:\s*&str\s*=\s*"([\d.]+)"') {
+            $currentVersion = $matches[1]
+          } else {
+            $currentVersion = "unknown"
+          }
+          Write-Host "Current version: $currentVersion"
+          Write-Host "Target version: $env:WEBVIEW2_VERSION"
+          if ($currentVersion -eq $env:WEBVIEW2_VERSION) {
+            "skip=true" >> $env:GITHUB_OUTPUT
+          } else {
+            "skip=false" >> $env:GITHUB_OUTPUT
+          }
 
       - name: Update winmd generator version
         if: steps.check-update.outputs.skip != 'true'
