@@ -16,6 +16,9 @@ on:
     # Check for new versions weekly on Mondays
     - cron: '0 0 * * 1'
 
+permissions:
+  contents: write
+
 jobs:
   update-bindings:
     runs-on: windows-latest
@@ -142,23 +145,17 @@ jobs:
           # Update dependency versions
           sed -i 's/webview2-com-sys = { version = "0\.38/webview2-com-sys = { version = "0.39/' crates/webview2-com/Cargo.toml
 
-      - name: Create Pull Request
+      - name: Commit and push changes
         if: steps.check-update.outputs.skip != 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          path: webview2-rs
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Update WebView2 SDK to ${{ env.WEBVIEW2_VERSION }}"
-          title: "Update WebView2 SDK to ${{ env.WEBVIEW2_VERSION }}"
-          body: |
-            This PR updates the WebView2 SDK bindings to version ${{ env.WEBVIEW2_VERSION }}.
+        shell: bash
+        working-directory: webview2-rs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update WebView2 SDK to $WEBVIEW2_VERSION
 
-            ## Changes
-            - Updated `Microsoft.Web.WebView2.Win32.winmd` from the new SDK
-            - Regenerated `bindings.rs` with new interfaces
-            - Bumped crate versions to 0.39.0
-
-            ## New APIs
-            Check the diff for new interfaces like `DragStarting` etc.
-          branch: update-webview2-${{ env.WEBVIEW2_VERSION }}
-          delete-branch: true
+          - Updated Microsoft.Web.WebView2.Win32.winmd from the new SDK
+          - Regenerated bindings.rs with new interfaces (including DragStarting)
+          - Bumped crate versions to 0.39.0"
+          git push origin main
