@@ -1,0 +1,150 @@
+name: Update WebView2 Bindings
+
+on:
+  workflow_dispatch:
+    inputs:
+      webview2_version:
+        description: 'WebView2 SDK version (e.g., 1.0.3719.77)'
+        required: true
+        default: '1.0.3719.77'
+  schedule:
+    # Check for new versions weekly on Mondays
+    - cron: '0 0 * * 1'
+
+jobs:
+  update-bindings:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout webview2-rs
+        uses: actions/checkout@v4
+        with:
+          path: webview2-rs
+
+      - name: Checkout webview2-win32md
+        uses: actions/checkout@v4
+        with:
+          repository: wravery/webview2-win32md
+          path: webview2-win32md
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Get latest WebView2 version (if scheduled)
+        if: github.event_name == 'schedule'
+        id: get-version
+        shell: pwsh
+        run: |
+          $package = Find-Package -Name Microsoft.Web.WebView2 -Source nuget.org -AllVersions |
+            Where-Object { $_.Version -notmatch '-' } |
+            Sort-Object { [Version]$_.Version } -Descending |
+            Select-Object -First 1
+          echo "version=$($package.Version)" >> $env:GITHUB_OUTPUT
+
+      - name: Set WebView2 version
+        id: set-version
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "WEBVIEW2_VERSION=${{ steps.get-version.outputs.version }}" >> $GITHUB_ENV
+          else
+            echo "WEBVIEW2_VERSION=${{ inputs.webview2_version }}" >> $GITHUB_ENV
+          fi
+
+      - name: Check if update needed
+        id: check-update
+        shell: bash
+        working-directory: webview2-rs
+        run: |
+          CURRENT_VERSION=$(grep 'WEBVIEW2_VERSION' crates/update-bindings/src/main.rs | grep -oP '\d+\.\d+\.\d+\.\d+')
+          echo "Current version: $CURRENT_VERSION"
+          echo "Target version: $WEBVIEW2_VERSION"
+          if [ "$CURRENT_VERSION" == "$WEBVIEW2_VERSION" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update winmd generator version
+        if: steps.check-update.outputs.skip != 'true'
+        shell: pwsh
+        working-directory: webview2-win32md
+        run: |
+          $content = Get-Content WebView2Win32Metadata.proj -Raw
+          $content = $content -replace '<WinmdVersion>[\d.]+</WinmdVersion>', "<WinmdVersion>$env:WEBVIEW2_VERSION</WinmdVersion>"
+          Set-Content WebView2Win32Metadata.proj $content
+          Get-Content WebView2Win32Metadata.proj
+
+      - name: Build winmd
+        if: steps.check-update.outputs.skip != 'true'
+        working-directory: webview2-win32md
+        run: dotnet build
+
+      - name: Copy winmd to webview2-rs
+        if: steps.check-update.outputs.skip != 'true'
+        shell: bash
+        run: |
+          cp webview2-win32md/bin/Microsoft.Web.WebView2.Win32.winmd webview2-rs/crates/update-bindings/winmd/
+
+      - name: Update version in main.rs
+        if: steps.check-update.outputs.skip != 'true'
+        shell: bash
+        working-directory: webview2-rs
+        run: |
+          sed -i "s/WEBVIEW2_VERSION: &str = \"[0-9.]*\"/WEBVIEW2_VERSION: \&str = \"$WEBVIEW2_VERSION\"/" crates/update-bindings/src/main.rs
+          grep WEBVIEW2_VERSION crates/update-bindings/src/main.rs
+
+      - name: Run update-bindings
+        if: steps.check-update.outputs.skip != 'true'
+        working-directory: webview2-rs/crates/update-bindings
+        run: cargo run
+
+      - name: Check for DragStarting
+        if: steps.check-update.outputs.skip != 'true'
+        shell: bash
+        working-directory: webview2-rs
+        run: |
+          if grep -q "DragStarting" crates/bindings/src/bindings.rs; then
+            echo "✅ DragStarting API found in bindings!"
+            grep -n "DragStarting" crates/bindings/src/bindings.rs | head -10
+          else
+            echo "⚠️ DragStarting API not found in bindings"
+          fi
+
+      - name: Update Cargo.toml versions
+        if: steps.check-update.outputs.skip != 'true'
+        shell: bash
+        working-directory: webview2-rs
+        run: |
+          # Bump patch version for webview2-com
+          sed -i 's/^version = "0\.38\.[0-9]*"/version = "0.39.0"/' crates/webview2-com/Cargo.toml
+          # Bump patch version for bindings (webview2-com-sys)
+          sed -i 's/^version = "0\.38\.[0-9]*"/version = "0.39.0"/' crates/bindings/Cargo.toml
+          # Update dependency versions
+          sed -i 's/webview2-com-sys = { version = "0\.38/webview2-com-sys = { version = "0.39/' crates/webview2-com/Cargo.toml
+
+      - name: Create Pull Request
+        if: steps.check-update.outputs.skip != 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          path: webview2-rs
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update WebView2 SDK to ${{ env.WEBVIEW2_VERSION }}"
+          title: "Update WebView2 SDK to ${{ env.WEBVIEW2_VERSION }}"
+          body: |
+            This PR updates the WebView2 SDK bindings to version ${{ env.WEBVIEW2_VERSION }}.
+
+            ## Changes
+            - Updated `Microsoft.Web.WebView2.Win32.winmd` from the new SDK
+            - Regenerated `bindings.rs` with new interfaces
+            - Bumped crate versions to 0.39.0
+
+            ## New APIs
+            Check the diff for new interfaces like `DragStarting` etc.
+          branch: update-webview2-${{ env.WEBVIEW2_VERSION }}
+          delete-branch: true
