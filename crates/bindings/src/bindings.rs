@@ -1011,7 +1011,7 @@ pub const COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS_SHARED_WORKER:
     COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS =
     COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS(2i32);
 pub const CORE_WEBVIEW_TARGET_PRODUCT_VERSION: windows_core::PCWSTR =
-    windows_core::w!("143.0.3650.58");
+    windows_core::w!("144.0.3719.77");
 windows_core::imp::define_interface!(
     ICoreWebView2,
     ICoreWebView2_Vtbl,
@@ -7213,6 +7213,129 @@ impl ICoreWebView2CompositionController4_Vtbl {
     }
 }
 impl windows_core::RuntimeName for ICoreWebView2CompositionController4 {}
+windows_core::imp::define_interface!(
+    ICoreWebView2CompositionController5,
+    ICoreWebView2CompositionController5_Vtbl,
+    0x8d0f82eb_7c33_5a4c_9108_84ca28ccc3b4
+);
+impl core::ops::Deref for ICoreWebView2CompositionController5 {
+    type Target = ICoreWebView2CompositionController4;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2CompositionController5,
+    windows_core::IUnknown,
+    ICoreWebView2CompositionController,
+    ICoreWebView2CompositionController2,
+    ICoreWebView2CompositionController3,
+    ICoreWebView2CompositionController4
+);
+impl ICoreWebView2CompositionController5 {
+    pub unsafe fn add_DragStarting<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DragStartingEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_DragStarting)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_DragStarting(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_DragStarting)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2CompositionController5_Vtbl {
+    pub base__: ICoreWebView2CompositionController4_Vtbl,
+    pub add_DragStarting: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_DragStarting:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2CompositionController5_Impl:
+    ICoreWebView2CompositionController4_Impl
+{
+    fn add_DragStarting(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2DragStartingEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_DragStarting(&self, token: i64) -> windows_core::Result<()>;
+}
+impl ICoreWebView2CompositionController5_Vtbl {
+    pub const fn new<Identity: ICoreWebView2CompositionController5_Impl, const OFFSET: isize>(
+    ) -> Self {
+        unsafe extern "system" fn add_DragStarting<
+            Identity: ICoreWebView2CompositionController5_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2CompositionController5_Impl::add_DragStarting(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_DragStarting<
+            Identity: ICoreWebView2CompositionController5_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2CompositionController5_Impl::remove_DragStarting(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: ICoreWebView2CompositionController4_Vtbl::new::<Identity, OFFSET>(),
+            add_DragStarting: add_DragStarting::<Identity, OFFSET>,
+            remove_DragStarting: remove_DragStarting::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2CompositionController5 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2CompositionController as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2CompositionController2 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2CompositionController3 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2CompositionController4 as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2CompositionController5 {}
 windows_core::imp::define_interface!(
     ICoreWebView2ContainsFullScreenElementChangedEventHandler,
     ICoreWebView2ContainsFullScreenElementChangedEventHandler_Vtbl,
@@ -13992,6 +14115,306 @@ impl ICoreWebView2DownloadStartingEventHandler_Vtbl {
     }
 }
 impl windows_core::RuntimeName for ICoreWebView2DownloadStartingEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DragStartingEventArgs,
+    ICoreWebView2DragStartingEventArgs_Vtbl,
+    0x8b8d9c7e_2f1a_4e6b_9d5a_3c8f7b9e1a2d
+);
+windows_core::imp::interface_hierarchy!(ICoreWebView2DragStartingEventArgs, windows_core::IUnknown);
+impl ICoreWebView2DragStartingEventArgs {
+    pub unsafe fn AllowedDropEffects(&self, value: *mut u32) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).AllowedDropEffects)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn Data(&self) -> windows_core::Result<windows::Win32::System::Com::IDataObject> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Data)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub unsafe fn Handled(&self, value: *mut windows_core::BOOL) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).Handled)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn SetHandled(&self, value: bool) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).SetHandled)(
+                windows_core::Interface::as_raw(self),
+                value.into(),
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn Position(
+        &self,
+        value: *mut windows::Win32::Foundation::POINT,
+    ) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).Position)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn GetDeferral(&self) -> windows_core::Result<ICoreWebView2Deferral> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetDeferral)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DragStartingEventArgs_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub AllowedDropEffects:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
+    pub Data: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub Handled: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::BOOL,
+    ) -> windows_core::HRESULT,
+    pub SetHandled: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::BOOL,
+    ) -> windows_core::HRESULT,
+    pub Position: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows::Win32::Foundation::POINT,
+    ) -> windows_core::HRESULT,
+    pub GetDeferral: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DragStartingEventArgs_Impl: windows_core::IUnknownImpl {
+    fn AllowedDropEffects(&self, value: *mut u32) -> windows_core::Result<()>;
+    fn Data(&self) -> windows_core::Result<windows::Win32::System::Com::IDataObject>;
+    fn Handled(&self, value: *mut windows_core::BOOL) -> windows_core::Result<()>;
+    fn SetHandled(&self, value: windows_core::BOOL) -> windows_core::Result<()>;
+    fn Position(&self, value: *mut windows::Win32::Foundation::POINT) -> windows_core::Result<()>;
+    fn GetDeferral(&self) -> windows_core::Result<ICoreWebView2Deferral>;
+}
+impl ICoreWebView2DragStartingEventArgs_Vtbl {
+    pub const fn new<Identity: ICoreWebView2DragStartingEventArgs_Impl, const OFFSET: isize>(
+    ) -> Self {
+        unsafe extern "system" fn AllowedDropEffects<
+            Identity: ICoreWebView2DragStartingEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut u32,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DragStartingEventArgs_Impl::AllowedDropEffects(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn Data<
+            Identity: ICoreWebView2DragStartingEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2DragStartingEventArgs_Impl::Data(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Handled<
+            Identity: ICoreWebView2DragStartingEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::BOOL,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DragStartingEventArgs_Impl::Handled(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn SetHandled<
+            Identity: ICoreWebView2DragStartingEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: windows_core::BOOL,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DragStartingEventArgs_Impl::SetHandled(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn Position<
+            Identity: ICoreWebView2DragStartingEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows::Win32::Foundation::POINT,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DragStartingEventArgs_Impl::Position(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn GetDeferral<
+            Identity: ICoreWebView2DragStartingEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2DragStartingEventArgs_Impl::GetDeferral(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            AllowedDropEffects: AllowedDropEffects::<Identity, OFFSET>,
+            Data: Data::<Identity, OFFSET>,
+            Handled: Handled::<Identity, OFFSET>,
+            SetHandled: SetHandled::<Identity, OFFSET>,
+            Position: Position::<Identity, OFFSET>,
+            GetDeferral: GetDeferral::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2DragStartingEventArgs as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DragStartingEventArgs {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DragStartingEventHandler,
+    ICoreWebView2DragStartingEventHandler_Vtbl,
+    0x3b149321_83c3_5d1f_b03f_a42899bc1c15
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2DragStartingEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2DragStartingEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2CompositionController>,
+        P1: windows_core::Param<ICoreWebView2DragStartingEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DragStartingEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DragStartingEventHandler_Impl: windows_core::IUnknownImpl {
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2CompositionController>,
+        args: windows_core::Ref<'_, ICoreWebView2DragStartingEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2DragStartingEventHandler_Vtbl {
+    pub const fn new<Identity: ICoreWebView2DragStartingEventHandler_Impl, const OFFSET: isize>(
+    ) -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2DragStartingEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DragStartingEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2DragStartingEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DragStartingEventHandler {}
 windows_core::imp::define_interface!(
     ICoreWebView2Environment,
     ICoreWebView2Environment_Vtbl,
