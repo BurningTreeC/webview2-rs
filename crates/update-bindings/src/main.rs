@@ -83,7 +83,7 @@ mod webview2_nuget {
     include!("../../bindings/src/declared_interfaces.rs");
 
     const WEBVIEW2_NAME: &str = "Microsoft.Web.WebView2";
-    const WEBVIEW2_VERSION: &str = "1.0.3912.50";
+    const WEBVIEW2_VERSION: &str = "1.0.3967.48";
 
     pub fn install() -> super::Result<PathBuf> {
         let out_dir = get_out_dir();
