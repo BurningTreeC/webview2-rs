@@ -27,6 +27,10 @@ pub fn all_declared_callbacks() -> BTreeSet<&'static str> {
     interfaces.insert("ICoreWebView2CursorChangedEventHandler");
     interfaces.insert("ICoreWebView2CustomItemSelectedEventHandler");
     interfaces.insert("ICoreWebView2DOMContentLoadedEventHandler");
+    interfaces.insert("ICoreWebView2DedicatedWorkerCreatedEventHandler");
+    interfaces.insert("ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler");
+    interfaces.insert("ICoreWebView2DedicatedWorkerDestroyingEventHandler");
+    interfaces.insert("ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler");
     interfaces.insert("ICoreWebView2DevToolsProtocolEventReceivedEventHandler");
     interfaces.insert("ICoreWebView2DocumentTitleChangedEventHandler");
     interfaces.insert("ICoreWebView2DownloadStartingEventHandler");
@@ -43,6 +47,7 @@ pub fn all_declared_callbacks() -> BTreeSet<&'static str> {
     interfaces.insert("ICoreWebView2FrameContentLoadingEventHandler");
     interfaces.insert("ICoreWebView2FrameCreatedEventHandler");
     interfaces.insert("ICoreWebView2FrameDOMContentLoadedEventHandler");
+    interfaces.insert("ICoreWebView2FrameDedicatedWorkerCreatedEventHandler");
     interfaces.insert("ICoreWebView2FrameDestroyedEventHandler");
     interfaces.insert("ICoreWebView2FrameNameChangedEventHandler");
     interfaces.insert("ICoreWebView2FrameNavigationCompletedEventHandler");
@@ -54,6 +59,8 @@ pub fn all_declared_callbacks() -> BTreeSet<&'static str> {
     interfaces.insert("ICoreWebView2GetFaviconCompletedHandler");
     interfaces.insert("ICoreWebView2GetNonDefaultPermissionSettingsCompletedHandler");
     interfaces.insert("ICoreWebView2GetProcessExtendedInfosCompletedHandler");
+    interfaces.insert("ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler");
+    interfaces.insert("ICoreWebView2GetSharedWorkersCompletedHandler");
     interfaces.insert("ICoreWebView2HistoryChangedEventHandler");
     interfaces.insert("ICoreWebView2IsDefaultDownloadDialogOpenChangedEventHandler");
     interfaces.insert("ICoreWebView2IsDocumentPlayingAudioChangedEventHandler");
@@ -82,7 +89,14 @@ pub fn all_declared_callbacks() -> BTreeSet<&'static str> {
     interfaces.insert("ICoreWebView2ScreenCaptureStartingEventHandler");
     interfaces.insert("ICoreWebView2ScriptDialogOpeningEventHandler");
     interfaces.insert("ICoreWebView2ServerCertificateErrorDetectedEventHandler");
+    interfaces.insert("ICoreWebView2ServiceWorkerActivatedEventHandler");
+    interfaces.insert("ICoreWebView2ServiceWorkerDestroyingEventHandler");
+    interfaces.insert("ICoreWebView2ServiceWorkerRegisteredEventHandler");
+    interfaces.insert("ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler");
+    interfaces.insert("ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler");
     interfaces.insert("ICoreWebView2SetPermissionStateCompletedHandler");
+    interfaces.insert("ICoreWebView2SharedWorkerCreatedEventHandler");
+    interfaces.insert("ICoreWebView2SharedWorkerDestroyingEventHandler");
     interfaces.insert("ICoreWebView2ShowSaveAsUICompletedHandler");
     interfaces.insert("ICoreWebView2SourceChangedEventHandler");
     interfaces.insert("ICoreWebView2StateChangedEventHandler");

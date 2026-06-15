@@ -1019,7 +1019,7 @@ pub const COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS_SHARED_WORKER:
     COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS =
     COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS(2i32);
 pub const CORE_WEBVIEW_TARGET_PRODUCT_VERSION: windows_core::PCWSTR =
-    windows_core::w!("148.0.3967.48");
+    windows_core::w!("149.0.4022.49");
 windows_core::imp::define_interface!(
     ICoreWebView2,
     ICoreWebView2_Vtbl,
@@ -12635,6 +12635,794 @@ impl ICoreWebView2DOMContentLoadedEventHandler_Vtbl {
 }
 impl windows_core::RuntimeName for ICoreWebView2DOMContentLoadedEventHandler {}
 windows_core::imp::define_interface!(
+    ICoreWebView2DedicatedWorker,
+    ICoreWebView2DedicatedWorker_Vtbl,
+    0x66833876_edba_5a60_8508_7da64504a9d2
+);
+windows_core::imp::interface_hierarchy!(ICoreWebView2DedicatedWorker, windows_core::IUnknown);
+impl ICoreWebView2DedicatedWorker {
+    pub unsafe fn ScriptUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).ScriptUri)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_DedicatedWorkerCreated<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_DedicatedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_DedicatedWorkerCreated(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_DedicatedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_Destroying<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorkerDestroyingEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_Destroying)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_Destroying(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_Destroying)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_WebMessageReceived<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_WebMessageReceived)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_WebMessageReceived(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_WebMessageReceived)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn PostWebMessageAsJson<P0>(&self, webmessageasjson: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::PCWSTR>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).PostWebMessageAsJson)(
+                windows_core::Interface::as_raw(self),
+                webmessageasjson.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn PostWebMessageAsString<P0>(
+        &self,
+        webmessageasstring: P0,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::PCWSTR>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).PostWebMessageAsString)(
+                windows_core::Interface::as_raw(self),
+                webmessageasstring.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DedicatedWorker_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub ScriptUri: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub add_DedicatedWorkerCreated: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_DedicatedWorkerCreated:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub add_Destroying: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_Destroying:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub add_WebMessageReceived: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_WebMessageReceived:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub PostWebMessageAsJson: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::PCWSTR,
+    ) -> windows_core::HRESULT,
+    pub PostWebMessageAsString: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::PCWSTR,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DedicatedWorker_Impl: windows_core::IUnknownImpl {
+    fn ScriptUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn add_DedicatedWorkerCreated(
+        &self,
+        eventhandler: windows_core::Ref<
+            '_,
+            ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler,
+        >,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_DedicatedWorkerCreated(&self, token: i64) -> windows_core::Result<()>;
+    fn add_Destroying(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2DedicatedWorkerDestroyingEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_Destroying(&self, token: i64) -> windows_core::Result<()>;
+    fn add_WebMessageReceived(
+        &self,
+        eventhandler: windows_core::Ref<
+            '_,
+            ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler,
+        >,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_WebMessageReceived(&self, token: i64) -> windows_core::Result<()>;
+    fn PostWebMessageAsJson(
+        &self,
+        webmessageasjson: &windows_core::PCWSTR,
+    ) -> windows_core::Result<()>;
+    fn PostWebMessageAsString(
+        &self,
+        webmessageasstring: &windows_core::PCWSTR,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2DedicatedWorker_Vtbl {
+    pub const fn new<Identity: ICoreWebView2DedicatedWorker_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn ScriptUri<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::ScriptUri(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_DedicatedWorkerCreated<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::add_DedicatedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_DedicatedWorkerCreated<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::remove_DedicatedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_Destroying<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::add_Destroying(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_Destroying<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::remove_Destroying(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_WebMessageReceived<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::add_WebMessageReceived(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_WebMessageReceived<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::remove_WebMessageReceived(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PostWebMessageAsJson<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            webmessageasjson: windows_core::PCWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::PostWebMessageAsJson(
+                    this,
+                    core::mem::transmute(&webmessageasjson),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PostWebMessageAsString<
+            Identity: ICoreWebView2DedicatedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            webmessageasstring: windows_core::PCWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorker_Impl::PostWebMessageAsString(
+                    this,
+                    core::mem::transmute(&webmessageasstring),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            ScriptUri: ScriptUri::<Identity, OFFSET>,
+            add_DedicatedWorkerCreated: add_DedicatedWorkerCreated::<Identity, OFFSET>,
+            remove_DedicatedWorkerCreated: remove_DedicatedWorkerCreated::<Identity, OFFSET>,
+            add_Destroying: add_Destroying::<Identity, OFFSET>,
+            remove_Destroying: remove_Destroying::<Identity, OFFSET>,
+            add_WebMessageReceived: add_WebMessageReceived::<Identity, OFFSET>,
+            remove_WebMessageReceived: remove_WebMessageReceived::<Identity, OFFSET>,
+            PostWebMessageAsJson: PostWebMessageAsJson::<Identity, OFFSET>,
+            PostWebMessageAsString: PostWebMessageAsString::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2DedicatedWorker as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DedicatedWorker {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DedicatedWorkerCreatedEventArgs,
+    ICoreWebView2DedicatedWorkerCreatedEventArgs_Vtbl,
+    0x910c52af_8129_516d_ab9a_b524e377d8ac
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2DedicatedWorkerCreatedEventArgs,
+    windows_core::IUnknown
+);
+impl ICoreWebView2DedicatedWorkerCreatedEventArgs {
+    pub unsafe fn OriginalSourceFrameInfo(&self) -> windows_core::Result<ICoreWebView2FrameInfo> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).OriginalSourceFrameInfo)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub unsafe fn Worker(&self) -> windows_core::Result<ICoreWebView2DedicatedWorker> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Worker)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DedicatedWorkerCreatedEventArgs_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub OriginalSourceFrameInfo: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub Worker: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DedicatedWorkerCreatedEventArgs_Impl: windows_core::IUnknownImpl {
+    fn OriginalSourceFrameInfo(&self) -> windows_core::Result<ICoreWebView2FrameInfo>;
+    fn Worker(&self) -> windows_core::Result<ICoreWebView2DedicatedWorker>;
+}
+impl ICoreWebView2DedicatedWorkerCreatedEventArgs_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2DedicatedWorkerCreatedEventArgs_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn OriginalSourceFrameInfo<
+            Identity: ICoreWebView2DedicatedWorkerCreatedEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2DedicatedWorkerCreatedEventArgs_Impl::OriginalSourceFrameInfo(
+                    this,
+                ) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Worker<
+            Identity: ICoreWebView2DedicatedWorkerCreatedEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2DedicatedWorkerCreatedEventArgs_Impl::Worker(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            OriginalSourceFrameInfo: OriginalSourceFrameInfo::<Identity, OFFSET>,
+            Worker: Worker::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2DedicatedWorkerCreatedEventArgs as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DedicatedWorkerCreatedEventArgs {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DedicatedWorkerCreatedEventHandler,
+    ICoreWebView2DedicatedWorkerCreatedEventHandler_Vtbl,
+    0xcba7462c_52c1_5706_8bbc_e9fc36476de4
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2DedicatedWorkerCreatedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2DedicatedWorkerCreatedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2>,
+        P1: windows_core::Param<ICoreWebView2DedicatedWorkerCreatedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DedicatedWorkerCreatedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DedicatedWorkerCreatedEventHandler_Impl: windows_core::IUnknownImpl {
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2>,
+        args: windows_core::Ref<'_, ICoreWebView2DedicatedWorkerCreatedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2DedicatedWorkerCreatedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2DedicatedWorkerCreatedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2DedicatedWorkerCreatedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorkerCreatedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2DedicatedWorkerCreatedEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DedicatedWorkerCreatedEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler,
+    ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Vtbl,
+    0xa85b1b35_f6d7_5ae6_9fd7_57905deff79f
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorker>,
+        P1: windows_core::Param<ICoreWebView2DedicatedWorkerCreatedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2DedicatedWorker>,
+        args: windows_core::Ref<'_, ICoreWebView2DedicatedWorkerCreatedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DedicatedWorkerDedicatedWorkerCreatedEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DedicatedWorkerDestroyingEventHandler,
+    ICoreWebView2DedicatedWorkerDestroyingEventHandler_Vtbl,
+    0x72473d5f_cba2_57ca_a42e_03610a349fef
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2DedicatedWorkerDestroyingEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2DedicatedWorkerDestroyingEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorker>,
+        P1: windows_core::Param<windows_core::IUnknown>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DedicatedWorkerDestroyingEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DedicatedWorkerDestroyingEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2DedicatedWorker>,
+        args: windows_core::Ref<'_, windows_core::IUnknown>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2DedicatedWorkerDestroyingEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2DedicatedWorkerDestroyingEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2DedicatedWorkerDestroyingEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorkerDestroyingEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2DedicatedWorkerDestroyingEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DedicatedWorkerDestroyingEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler,
+    ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Vtbl,
+    0xb366218b_0bb8_58a3_ac33_f40a2235366e
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorker>,
+        P1: windows_core::Param<ICoreWebView2WebMessageReceivedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2DedicatedWorker>,
+        args: windows_core::Ref<'_, ICoreWebView2WebMessageReceivedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2DedicatedWorkerWebMessageReceivedEventHandler {}
+windows_core::imp::define_interface!(
     ICoreWebView2Deferral,
     ICoreWebView2Deferral_Vtbl,
     0xc10e7f7b_b585_46f0_a623_8befbf3e4ee0
@@ -20558,6 +21346,132 @@ impl ICoreWebView2Frame7_Vtbl {
 }
 impl windows_core::RuntimeName for ICoreWebView2Frame7 {}
 windows_core::imp::define_interface!(
+    ICoreWebView2Frame8,
+    ICoreWebView2Frame8_Vtbl,
+    0x9deff655_e3d5_5b8f_9107_52e66b3ec3fc
+);
+impl core::ops::Deref for ICoreWebView2Frame8 {
+    type Target = ICoreWebView2Frame7;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2Frame8,
+    windows_core::IUnknown,
+    ICoreWebView2Frame,
+    ICoreWebView2Frame2,
+    ICoreWebView2Frame3,
+    ICoreWebView2Frame4,
+    ICoreWebView2Frame5,
+    ICoreWebView2Frame6,
+    ICoreWebView2Frame7
+);
+impl ICoreWebView2Frame8 {
+    pub unsafe fn add_DedicatedWorkerCreated<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2FrameDedicatedWorkerCreatedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_DedicatedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_DedicatedWorkerCreated(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_DedicatedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2Frame8_Vtbl {
+    pub base__: ICoreWebView2Frame7_Vtbl,
+    pub add_DedicatedWorkerCreated: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_DedicatedWorkerCreated:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2Frame8_Impl: ICoreWebView2Frame7_Impl {
+    fn add_DedicatedWorkerCreated(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2FrameDedicatedWorkerCreatedEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_DedicatedWorkerCreated(&self, token: i64) -> windows_core::Result<()>;
+}
+impl ICoreWebView2Frame8_Vtbl {
+    pub const fn new<Identity: ICoreWebView2Frame8_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn add_DedicatedWorkerCreated<
+            Identity: ICoreWebView2Frame8_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2Frame8_Impl::add_DedicatedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_DedicatedWorkerCreated<
+            Identity: ICoreWebView2Frame8_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2Frame8_Impl::remove_DedicatedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: ICoreWebView2Frame7_Vtbl::new::<Identity, OFFSET>(),
+            add_DedicatedWorkerCreated: add_DedicatedWorkerCreated::<Identity, OFFSET>,
+            remove_DedicatedWorkerCreated: remove_DedicatedWorkerCreated::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2Frame8 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame2 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame3 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame4 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame5 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame6 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Frame7 as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2Frame8 {}
+windows_core::imp::define_interface!(
     ICoreWebView2FrameChildFrameCreatedEventHandler,
     ICoreWebView2FrameChildFrameCreatedEventHandler_Vtbl,
     0x569e40e7_46b7_563d_83ae_1073155664d7
@@ -20921,6 +21835,84 @@ impl ICoreWebView2FrameDOMContentLoadedEventHandler_Vtbl {
     }
 }
 impl windows_core::RuntimeName for ICoreWebView2FrameDOMContentLoadedEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2FrameDedicatedWorkerCreatedEventHandler,
+    ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Vtbl,
+    0x3e28d307_9d58_5306_8097_a79301de4f05
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2FrameDedicatedWorkerCreatedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2FrameDedicatedWorkerCreatedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2Frame>,
+        P1: windows_core::Param<ICoreWebView2DedicatedWorkerCreatedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2Frame>,
+        args: windows_core::Ref<'_, ICoreWebView2DedicatedWorkerCreatedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2FrameDedicatedWorkerCreatedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2FrameDedicatedWorkerCreatedEventHandler as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2FrameDedicatedWorkerCreatedEventHandler {}
 windows_core::imp::define_interface!(
     ICoreWebView2FrameDestroyedEventHandler,
     ICoreWebView2FrameDestroyedEventHandler_Vtbl,
@@ -22187,6 +23179,166 @@ impl ICoreWebView2GetProcessExtendedInfosCompletedHandler_Vtbl {
     }
 }
 impl windows_core::RuntimeName for ICoreWebView2GetProcessExtendedInfosCompletedHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler,
+    ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Vtbl,
+    0xea83432f_6528_592f_903b_0917eb0fd9c7
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler {
+    pub unsafe fn Invoke<P1>(
+        &self,
+        errorcode: windows_core::HRESULT,
+        result: P1,
+    ) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<ICoreWebView2ServiceWorkerRegistrationCollectionView>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                errorcode,
+                result.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::HRESULT,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        errorcode: windows_core::HRESULT,
+        result: windows_core::Ref<'_, ICoreWebView2ServiceWorkerRegistrationCollectionView>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            errorcode: windows_core::HRESULT,
+            result: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&errorcode),
+                    core::mem::transmute_copy(&result),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2GetSharedWorkersCompletedHandler,
+    ICoreWebView2GetSharedWorkersCompletedHandler_Vtbl,
+    0x1f3179ae_15e5_51e4_8583_be0caf85adc7
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2GetSharedWorkersCompletedHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2GetSharedWorkersCompletedHandler {
+    pub unsafe fn Invoke<P1>(
+        &self,
+        errorcode: windows_core::HRESULT,
+        result: P1,
+    ) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<ICoreWebView2SharedWorkerCollectionView>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                errorcode,
+                result.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2GetSharedWorkersCompletedHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::HRESULT,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2GetSharedWorkersCompletedHandler_Impl: windows_core::IUnknownImpl {
+    fn Invoke(
+        &self,
+        errorcode: windows_core::HRESULT,
+        result: windows_core::Ref<'_, ICoreWebView2SharedWorkerCollectionView>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2GetSharedWorkersCompletedHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2GetSharedWorkersCompletedHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2GetSharedWorkersCompletedHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            errorcode: windows_core::HRESULT,
+            result: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2GetSharedWorkersCompletedHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&errorcode),
+                    core::mem::transmute_copy(&result),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2GetSharedWorkersCompletedHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2GetSharedWorkersCompletedHandler {}
 windows_core::imp::define_interface!(
     ICoreWebView2HistoryChangedEventHandler,
     ICoreWebView2HistoryChangedEventHandler_Vtbl,
@@ -32764,6 +33916,211 @@ impl ICoreWebView2Profile8_Vtbl {
 }
 impl windows_core::RuntimeName for ICoreWebView2Profile8 {}
 windows_core::imp::define_interface!(
+    ICoreWebView2Profile9,
+    ICoreWebView2Profile9_Vtbl,
+    0x40c764d0_12fc_5d23_816d_971b353174c1
+);
+impl core::ops::Deref for ICoreWebView2Profile9 {
+    type Target = ICoreWebView2Profile8;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2Profile9,
+    windows_core::IUnknown,
+    ICoreWebView2Profile,
+    ICoreWebView2Profile2,
+    ICoreWebView2Profile3,
+    ICoreWebView2Profile4,
+    ICoreWebView2Profile5,
+    ICoreWebView2Profile6,
+    ICoreWebView2Profile7,
+    ICoreWebView2Profile8
+);
+impl ICoreWebView2Profile9 {
+    pub unsafe fn AreWebViewScriptApisEnabledForServiceWorkers(
+        &self,
+        value: *mut windows_core::BOOL,
+    ) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).AreWebViewScriptApisEnabledForServiceWorkers)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn SetAreWebViewScriptApisEnabledForServiceWorkers(
+        &self,
+        value: bool,
+    ) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).SetAreWebViewScriptApisEnabledForServiceWorkers)(
+                windows_core::Interface::as_raw(self),
+                value.into(),
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn ServiceWorkerManager(
+        &self,
+    ) -> windows_core::Result<ICoreWebView2ServiceWorkerManager> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ServiceWorkerManager)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub unsafe fn SharedWorkerManager(
+        &self,
+    ) -> windows_core::Result<ICoreWebView2SharedWorkerManager> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SharedWorkerManager)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2Profile9_Vtbl {
+    pub base__: ICoreWebView2Profile8_Vtbl,
+    pub AreWebViewScriptApisEnabledForServiceWorkers:
+        unsafe extern "system" fn(
+            *mut core::ffi::c_void,
+            *mut windows_core::BOOL,
+        ) -> windows_core::HRESULT,
+    pub SetAreWebViewScriptApisEnabledForServiceWorkers:
+        unsafe extern "system" fn(
+            *mut core::ffi::c_void,
+            windows_core::BOOL,
+        ) -> windows_core::HRESULT,
+    pub ServiceWorkerManager: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SharedWorkerManager: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2Profile9_Impl: ICoreWebView2Profile8_Impl {
+    fn AreWebViewScriptApisEnabledForServiceWorkers(
+        &self,
+        value: *mut windows_core::BOOL,
+    ) -> windows_core::Result<()>;
+    fn SetAreWebViewScriptApisEnabledForServiceWorkers(
+        &self,
+        value: windows_core::BOOL,
+    ) -> windows_core::Result<()>;
+    fn ServiceWorkerManager(&self) -> windows_core::Result<ICoreWebView2ServiceWorkerManager>;
+    fn SharedWorkerManager(&self) -> windows_core::Result<ICoreWebView2SharedWorkerManager>;
+}
+impl ICoreWebView2Profile9_Vtbl {
+    pub const fn new<Identity: ICoreWebView2Profile9_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn AreWebViewScriptApisEnabledForServiceWorkers<
+            Identity: ICoreWebView2Profile9_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::BOOL,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2Profile9_Impl::AreWebViewScriptApisEnabledForServiceWorkers(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn SetAreWebViewScriptApisEnabledForServiceWorkers<
+            Identity: ICoreWebView2Profile9_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: windows_core::BOOL,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2Profile9_Impl::SetAreWebViewScriptApisEnabledForServiceWorkers(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn ServiceWorkerManager<
+            Identity: ICoreWebView2Profile9_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2Profile9_Impl::ServiceWorkerManager(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SharedWorkerManager<
+            Identity: ICoreWebView2Profile9_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2Profile9_Impl::SharedWorkerManager(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: ICoreWebView2Profile8_Vtbl::new::<Identity, OFFSET>(),
+            AreWebViewScriptApisEnabledForServiceWorkers:
+                AreWebViewScriptApisEnabledForServiceWorkers::<Identity, OFFSET>,
+            SetAreWebViewScriptApisEnabledForServiceWorkers:
+                SetAreWebViewScriptApisEnabledForServiceWorkers::<Identity, OFFSET>,
+            ServiceWorkerManager: ServiceWorkerManager::<Identity, OFFSET>,
+            SharedWorkerManager: SharedWorkerManager::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2Profile9 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile2 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile3 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile4 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile5 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile6 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile7 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2Profile8 as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2Profile9 {}
+windows_core::imp::define_interface!(
     ICoreWebView2ProfileAddBrowserExtensionCompletedHandler,
     ICoreWebView2ProfileAddBrowserExtensionCompletedHandler_Vtbl,
     0xdf1aab27_82b9_4ab6_aae8_017a49398c14
@@ -35244,6 +36601,1450 @@ impl ICoreWebView2ServerCertificateErrorDetectedEventHandler_Vtbl {
 }
 impl windows_core::RuntimeName for ICoreWebView2ServerCertificateErrorDetectedEventHandler {}
 windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorker,
+    ICoreWebView2ServiceWorker_Vtbl,
+    0x245a7bb7_7c31_582d_95ee_0f2d99d2f5b0
+);
+windows_core::imp::interface_hierarchy!(ICoreWebView2ServiceWorker, windows_core::IUnknown);
+impl ICoreWebView2ServiceWorker {
+    pub unsafe fn ScriptUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).ScriptUri)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_Destroying<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerDestroyingEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_Destroying)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_Destroying(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_Destroying)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_WebMessageReceived<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_WebMessageReceived)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_WebMessageReceived(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_WebMessageReceived)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn PostWebMessageAsJson<P0>(&self, webmessageasjson: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::PCWSTR>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).PostWebMessageAsJson)(
+                windows_core::Interface::as_raw(self),
+                webmessageasjson.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn PostWebMessageAsString<P0>(
+        &self,
+        webmessageasstring: P0,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::PCWSTR>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).PostWebMessageAsString)(
+                windows_core::Interface::as_raw(self),
+                webmessageasstring.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorker_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub ScriptUri: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub add_Destroying: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_Destroying:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub add_WebMessageReceived: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_WebMessageReceived:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub PostWebMessageAsJson: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::PCWSTR,
+    ) -> windows_core::HRESULT,
+    pub PostWebMessageAsString: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::PCWSTR,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorker_Impl: windows_core::IUnknownImpl {
+    fn ScriptUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn add_Destroying(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2ServiceWorkerDestroyingEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_Destroying(&self, token: i64) -> windows_core::Result<()>;
+    fn add_WebMessageReceived(
+        &self,
+        eventhandler: windows_core::Ref<
+            '_,
+            ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler,
+        >,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_WebMessageReceived(&self, token: i64) -> windows_core::Result<()>;
+    fn PostWebMessageAsJson(
+        &self,
+        webmessageasjson: &windows_core::PCWSTR,
+    ) -> windows_core::Result<()>;
+    fn PostWebMessageAsString(
+        &self,
+        webmessageasstring: &windows_core::PCWSTR,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorker_Vtbl {
+    pub const fn new<Identity: ICoreWebView2ServiceWorker_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn ScriptUri<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::ScriptUri(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
+        unsafe extern "system" fn add_Destroying<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::add_Destroying(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_Destroying<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::remove_Destroying(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_WebMessageReceived<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::add_WebMessageReceived(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_WebMessageReceived<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::remove_WebMessageReceived(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PostWebMessageAsJson<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            webmessageasjson: windows_core::PCWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::PostWebMessageAsJson(
+                    this,
+                    core::mem::transmute(&webmessageasjson),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PostWebMessageAsString<
+            Identity: ICoreWebView2ServiceWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            webmessageasstring: windows_core::PCWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorker_Impl::PostWebMessageAsString(
+                    this,
+                    core::mem::transmute(&webmessageasstring),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            ScriptUri: ScriptUri::<Identity, OFFSET>,
+            add_Destroying: add_Destroying::<Identity, OFFSET>,
+            remove_Destroying: remove_Destroying::<Identity, OFFSET>,
+            add_WebMessageReceived: add_WebMessageReceived::<Identity, OFFSET>,
+            remove_WebMessageReceived: remove_WebMessageReceived::<Identity, OFFSET>,
+            PostWebMessageAsJson: PostWebMessageAsJson::<Identity, OFFSET>,
+            PostWebMessageAsString: PostWebMessageAsString::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorker as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorker {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerActivatedEventArgs,
+    ICoreWebView2ServiceWorkerActivatedEventArgs_Vtbl,
+    0x5685c4b6_a514_58b2_9721_b61ef4ccd9d8
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerActivatedEventArgs,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerActivatedEventArgs {
+    pub unsafe fn ActiveServiceWorker(&self) -> windows_core::Result<ICoreWebView2ServiceWorker> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ActiveServiceWorker)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerActivatedEventArgs_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub ActiveServiceWorker: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerActivatedEventArgs_Impl: windows_core::IUnknownImpl {
+    fn ActiveServiceWorker(&self) -> windows_core::Result<ICoreWebView2ServiceWorker>;
+}
+impl ICoreWebView2ServiceWorkerActivatedEventArgs_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerActivatedEventArgs_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn ActiveServiceWorker<
+            Identity: ICoreWebView2ServiceWorkerActivatedEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2ServiceWorkerActivatedEventArgs_Impl::ActiveServiceWorker(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            ActiveServiceWorker: ActiveServiceWorker::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerActivatedEventArgs as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerActivatedEventArgs {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerActivatedEventHandler,
+    ICoreWebView2ServiceWorkerActivatedEventHandler_Vtbl,
+    0xecaa9897_769d_5ece_a1e5_8859818caf86
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerActivatedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerActivatedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerRegistration>,
+        P1: windows_core::Param<ICoreWebView2ServiceWorkerActivatedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerActivatedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerActivatedEventHandler_Impl: windows_core::IUnknownImpl {
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2ServiceWorkerRegistration>,
+        args: windows_core::Ref<'_, ICoreWebView2ServiceWorkerActivatedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerActivatedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerActivatedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2ServiceWorkerActivatedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerActivatedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerActivatedEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerActivatedEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerDestroyingEventHandler,
+    ICoreWebView2ServiceWorkerDestroyingEventHandler_Vtbl,
+    0xc7528449_5674_5e34_b990_ff4cef046214
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerDestroyingEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerDestroyingEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorker>,
+        P1: windows_core::Param<windows_core::IUnknown>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerDestroyingEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerDestroyingEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2ServiceWorker>,
+        args: windows_core::Ref<'_, windows_core::IUnknown>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerDestroyingEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerDestroyingEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2ServiceWorkerDestroyingEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerDestroyingEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerDestroyingEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerDestroyingEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerManager,
+    ICoreWebView2ServiceWorkerManager_Vtbl,
+    0xa2d52fd4_9b10_5971_8499_c67d1560f47a
+);
+windows_core::imp::interface_hierarchy!(ICoreWebView2ServiceWorkerManager, windows_core::IUnknown);
+impl ICoreWebView2ServiceWorkerManager {
+    pub unsafe fn add_ServiceWorkerRegistered<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerRegisteredEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_ServiceWorkerRegistered)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_ServiceWorkerRegistered(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_ServiceWorkerRegistered)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn GetServiceWorkerRegistrations<P0>(&self, handler: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).GetServiceWorkerRegistrations)(
+                windows_core::Interface::as_raw(self),
+                handler.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn GetServiceWorkerRegistrationsForScope<P0, P1>(
+        &self,
+        scopeuri: P0,
+        handler: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::PCWSTR>,
+        P1: windows_core::Param<ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).GetServiceWorkerRegistrationsForScope)(
+                windows_core::Interface::as_raw(self),
+                scopeuri.param().abi(),
+                handler.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerManager_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub add_ServiceWorkerRegistered: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_ServiceWorkerRegistered:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub GetServiceWorkerRegistrations: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub GetServiceWorkerRegistrationsForScope: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows_core::PCWSTR,
+        *mut core::ffi::c_void,
+    )
+        -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerManager_Impl: windows_core::IUnknownImpl {
+    fn add_ServiceWorkerRegistered(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2ServiceWorkerRegisteredEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_ServiceWorkerRegistered(&self, token: i64) -> windows_core::Result<()>;
+    fn GetServiceWorkerRegistrations(
+        &self,
+        handler: windows_core::Ref<'_, ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler>,
+    ) -> windows_core::Result<()>;
+    fn GetServiceWorkerRegistrationsForScope(
+        &self,
+        scopeuri: &windows_core::PCWSTR,
+        handler: windows_core::Ref<'_, ICoreWebView2GetServiceWorkerRegistrationsCompletedHandler>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerManager_Vtbl {
+    pub const fn new<Identity: ICoreWebView2ServiceWorkerManager_Impl, const OFFSET: isize>() -> Self
+    {
+        unsafe extern "system" fn add_ServiceWorkerRegistered<
+            Identity: ICoreWebView2ServiceWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerManager_Impl::add_ServiceWorkerRegistered(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_ServiceWorkerRegistered<
+            Identity: ICoreWebView2ServiceWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerManager_Impl::remove_ServiceWorkerRegistered(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn GetServiceWorkerRegistrations<
+            Identity: ICoreWebView2ServiceWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerManager_Impl::GetServiceWorkerRegistrations(
+                    this,
+                    core::mem::transmute_copy(&handler),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn GetServiceWorkerRegistrationsForScope<
+            Identity: ICoreWebView2ServiceWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            scopeuri: windows_core::PCWSTR,
+            handler: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerManager_Impl::GetServiceWorkerRegistrationsForScope(
+                    this,
+                    core::mem::transmute(&scopeuri),
+                    core::mem::transmute_copy(&handler),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            add_ServiceWorkerRegistered: add_ServiceWorkerRegistered::<Identity, OFFSET>,
+            remove_ServiceWorkerRegistered: remove_ServiceWorkerRegistered::<Identity, OFFSET>,
+            GetServiceWorkerRegistrations: GetServiceWorkerRegistrations::<Identity, OFFSET>,
+            GetServiceWorkerRegistrationsForScope: GetServiceWorkerRegistrationsForScope::<
+                Identity,
+                OFFSET,
+            >,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerManager as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerManager {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerRegisteredEventArgs,
+    ICoreWebView2ServiceWorkerRegisteredEventArgs_Vtbl,
+    0xc6172932_407a_553b_b4d1_cdd12605eb6a
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerRegisteredEventArgs,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerRegisteredEventArgs {
+    pub unsafe fn ServiceWorkerRegistration(
+        &self,
+    ) -> windows_core::Result<ICoreWebView2ServiceWorkerRegistration> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ServiceWorkerRegistration)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerRegisteredEventArgs_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub ServiceWorkerRegistration: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerRegisteredEventArgs_Impl: windows_core::IUnknownImpl {
+    fn ServiceWorkerRegistration(
+        &self,
+    ) -> windows_core::Result<ICoreWebView2ServiceWorkerRegistration>;
+}
+impl ICoreWebView2ServiceWorkerRegisteredEventArgs_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerRegisteredEventArgs_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn ServiceWorkerRegistration<
+            Identity: ICoreWebView2ServiceWorkerRegisteredEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2ServiceWorkerRegisteredEventArgs_Impl::ServiceWorkerRegistration(
+                    this,
+                ) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            ServiceWorkerRegistration: ServiceWorkerRegistration::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerRegisteredEventArgs as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerRegisteredEventArgs {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerRegisteredEventHandler,
+    ICoreWebView2ServiceWorkerRegisteredEventHandler_Vtbl,
+    0xc024c910_4df2_54a3_b5c1_6152ca0e4577
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerRegisteredEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerRegisteredEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerManager>,
+        P1: windows_core::Param<ICoreWebView2ServiceWorkerRegisteredEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerRegisteredEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerRegisteredEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2ServiceWorkerManager>,
+        args: windows_core::Ref<'_, ICoreWebView2ServiceWorkerRegisteredEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerRegisteredEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerRegisteredEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2ServiceWorkerRegisteredEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegisteredEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerRegisteredEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerRegisteredEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerRegistration,
+    ICoreWebView2ServiceWorkerRegistration_Vtbl,
+    0x06003f5e_af92_5e7e_b497_3fa167dd37c2
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerRegistration,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerRegistration {
+    pub unsafe fn ActiveServiceWorker(&self) -> windows_core::Result<ICoreWebView2ServiceWorker> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ActiveServiceWorker)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub unsafe fn Origin(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).Origin)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn ScopeUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).ScopeUri)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn TopLevelOrigin(
+        &self,
+        value: *mut windows_core::PWSTR,
+    ) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).TopLevelOrigin)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_ServiceWorkerActivated<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerActivatedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_ServiceWorkerActivated)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_ServiceWorkerActivated(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_ServiceWorkerActivated)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_Unregistering<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_Unregistering)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_Unregistering(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_Unregistering)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerRegistration_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub ActiveServiceWorker: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub Origin: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub ScopeUri: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub TopLevelOrigin: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub add_ServiceWorkerActivated: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_ServiceWorkerActivated:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub add_Unregistering: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_Unregistering:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerRegistration_Impl: windows_core::IUnknownImpl {
+    fn ActiveServiceWorker(&self) -> windows_core::Result<ICoreWebView2ServiceWorker>;
+    fn Origin(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn ScopeUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn TopLevelOrigin(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn add_ServiceWorkerActivated(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2ServiceWorkerActivatedEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_ServiceWorkerActivated(&self, token: i64) -> windows_core::Result<()>;
+    fn add_Unregistering(
+        &self,
+        eventhandler: windows_core::Ref<
+            '_,
+            ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler,
+        >,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_Unregistering(&self, token: i64) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerRegistration_Vtbl {
+    pub const fn new<Identity: ICoreWebView2ServiceWorkerRegistration_Impl, const OFFSET: isize>(
+    ) -> Self {
+        unsafe extern "system" fn ActiveServiceWorker<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2ServiceWorkerRegistration_Impl::ActiveServiceWorker(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Origin<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::Origin(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn ScopeUri<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::ScopeUri(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn TopLevelOrigin<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::TopLevelOrigin(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_ServiceWorkerActivated<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::add_ServiceWorkerActivated(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_ServiceWorkerActivated<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::remove_ServiceWorkerActivated(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_Unregistering<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::add_Unregistering(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_Unregistering<
+            Identity: ICoreWebView2ServiceWorkerRegistration_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistration_Impl::remove_Unregistering(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            ActiveServiceWorker: ActiveServiceWorker::<Identity, OFFSET>,
+            Origin: Origin::<Identity, OFFSET>,
+            ScopeUri: ScopeUri::<Identity, OFFSET>,
+            TopLevelOrigin: TopLevelOrigin::<Identity, OFFSET>,
+            add_ServiceWorkerActivated: add_ServiceWorkerActivated::<Identity, OFFSET>,
+            remove_ServiceWorkerActivated: remove_ServiceWorkerActivated::<Identity, OFFSET>,
+            add_Unregistering: add_Unregistering::<Identity, OFFSET>,
+            remove_Unregistering: remove_Unregistering::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2ServiceWorkerRegistration as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerRegistration {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerRegistrationCollectionView,
+    ICoreWebView2ServiceWorkerRegistrationCollectionView_Vtbl,
+    0x83d8cfa9_ef83_5447_9431_91c203c4c9d8
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerRegistrationCollectionView,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerRegistrationCollectionView {
+    pub unsafe fn Count(&self, value: *mut u32) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).Count)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn GetValueAtIndex(
+        &self,
+        index: u32,
+    ) -> windows_core::Result<ICoreWebView2ServiceWorkerRegistration> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetValueAtIndex)(
+                windows_core::Interface::as_raw(self),
+                index,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerRegistrationCollectionView_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Count: unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
+    pub GetValueAtIndex: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        u32,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerRegistrationCollectionView_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Count(&self, value: *mut u32) -> windows_core::Result<()>;
+    fn GetValueAtIndex(
+        &self,
+        index: u32,
+    ) -> windows_core::Result<ICoreWebView2ServiceWorkerRegistration>;
+}
+impl ICoreWebView2ServiceWorkerRegistrationCollectionView_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerRegistrationCollectionView_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Count<
+            Identity: ICoreWebView2ServiceWorkerRegistrationCollectionView_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut u32,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistrationCollectionView_Impl::Count(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn GetValueAtIndex<
+            Identity: ICoreWebView2ServiceWorkerRegistrationCollectionView_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            index: u32,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2ServiceWorkerRegistrationCollectionView_Impl::GetValueAtIndex(
+                    this,
+                    core::mem::transmute_copy(&index),
+                ) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Count: Count::<Identity, OFFSET>,
+            GetValueAtIndex: GetValueAtIndex::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2ServiceWorkerRegistrationCollectionView as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerRegistrationCollectionView {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler,
+    ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Vtbl,
+    0xbec01d14_6ad9_5257_9ff6_84f01baa0cca
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorkerRegistration>,
+        P1: windows_core::Param<windows_core::IUnknown>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2ServiceWorkerRegistration>,
+        args: windows_core::Ref<'_, windows_core::IUnknown>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerRegistrationUnregisteringEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler,
+    ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Vtbl,
+    0x65f0a1a6_a295_5a9f_8041_70db71566f98
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2ServiceWorker>,
+        P1: windows_core::Param<ICoreWebView2WebMessageReceivedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Impl:
+    windows_core::IUnknownImpl
+{
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2ServiceWorker>,
+        args: windows_core::Ref<'_, ICoreWebView2WebMessageReceivedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == & < ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler as windows_core::Interface >::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2ServiceWorkerWebMessageReceivedEventHandler {}
+windows_core::imp::define_interface!(
     ICoreWebView2SetPermissionStateCompletedHandler,
     ICoreWebView2SetPermissionStateCompletedHandler_Vtbl,
     0xfc77fb30_9c9e_4076_b8c7_7644a703ca1b
@@ -37147,6 +39948,668 @@ impl ICoreWebView2SharedBuffer_Vtbl {
     }
 }
 impl windows_core::RuntimeName for ICoreWebView2SharedBuffer {}
+windows_core::imp::define_interface!(
+    ICoreWebView2SharedWorker,
+    ICoreWebView2SharedWorker_Vtbl,
+    0xbcd39c8d_48bb_5f1b_be22_89f9c0c4484a
+);
+windows_core::imp::interface_hierarchy!(ICoreWebView2SharedWorker, windows_core::IUnknown);
+impl ICoreWebView2SharedWorker {
+    pub unsafe fn Origin(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).Origin)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn ScriptUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).ScriptUri)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn TopLevelOrigin(
+        &self,
+        value: *mut windows_core::PWSTR,
+    ) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).TopLevelOrigin)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn add_Destroying<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2SharedWorkerDestroyingEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_Destroying)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_Destroying(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_Destroying)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2SharedWorker_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Origin: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub ScriptUri: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub TopLevelOrigin: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows_core::PWSTR,
+    ) -> windows_core::HRESULT,
+    pub add_Destroying: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_Destroying:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2SharedWorker_Impl: windows_core::IUnknownImpl {
+    fn Origin(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn ScriptUri(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn TopLevelOrigin(&self, value: *mut windows_core::PWSTR) -> windows_core::Result<()>;
+    fn add_Destroying(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2SharedWorkerDestroyingEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_Destroying(&self, token: i64) -> windows_core::Result<()>;
+}
+impl ICoreWebView2SharedWorker_Vtbl {
+    pub const fn new<Identity: ICoreWebView2SharedWorker_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Origin<
+            Identity: ICoreWebView2SharedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorker_Impl::Origin(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
+        unsafe extern "system" fn ScriptUri<
+            Identity: ICoreWebView2SharedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorker_Impl::ScriptUri(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
+        unsafe extern "system" fn TopLevelOrigin<
+            Identity: ICoreWebView2SharedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut windows_core::PWSTR,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorker_Impl::TopLevelOrigin(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn add_Destroying<
+            Identity: ICoreWebView2SharedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorker_Impl::add_Destroying(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_Destroying<
+            Identity: ICoreWebView2SharedWorker_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorker_Impl::remove_Destroying(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Origin: Origin::<Identity, OFFSET>,
+            ScriptUri: ScriptUri::<Identity, OFFSET>,
+            TopLevelOrigin: TopLevelOrigin::<Identity, OFFSET>,
+            add_Destroying: add_Destroying::<Identity, OFFSET>,
+            remove_Destroying: remove_Destroying::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2SharedWorker as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2SharedWorker {}
+windows_core::imp::define_interface!(
+    ICoreWebView2SharedWorkerCollectionView,
+    ICoreWebView2SharedWorkerCollectionView_Vtbl,
+    0xf8842b09_0108_5575_a965_3d76fd267050
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2SharedWorkerCollectionView,
+    windows_core::IUnknown
+);
+impl ICoreWebView2SharedWorkerCollectionView {
+    pub unsafe fn Count(&self, value: *mut u32) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).Count)(
+                windows_core::Interface::as_raw(self),
+                value as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn GetValueAtIndex(
+        &self,
+        index: u32,
+    ) -> windows_core::Result<ICoreWebView2SharedWorker> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetValueAtIndex)(
+                windows_core::Interface::as_raw(self),
+                index,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2SharedWorkerCollectionView_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Count: unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
+    pub GetValueAtIndex: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        u32,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2SharedWorkerCollectionView_Impl: windows_core::IUnknownImpl {
+    fn Count(&self, value: *mut u32) -> windows_core::Result<()>;
+    fn GetValueAtIndex(&self, index: u32) -> windows_core::Result<ICoreWebView2SharedWorker>;
+}
+impl ICoreWebView2SharedWorkerCollectionView_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2SharedWorkerCollectionView_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Count<
+            Identity: ICoreWebView2SharedWorkerCollectionView_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut u32,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorkerCollectionView_Impl::Count(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn GetValueAtIndex<
+            Identity: ICoreWebView2SharedWorkerCollectionView_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            index: u32,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2SharedWorkerCollectionView_Impl::GetValueAtIndex(
+                    this,
+                    core::mem::transmute_copy(&index),
+                ) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Count: Count::<Identity, OFFSET>,
+            GetValueAtIndex: GetValueAtIndex::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2SharedWorkerCollectionView as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2SharedWorkerCollectionView {}
+windows_core::imp::define_interface!(
+    ICoreWebView2SharedWorkerCreatedEventArgs,
+    ICoreWebView2SharedWorkerCreatedEventArgs_Vtbl,
+    0x9f6615b0_08f1_5baa_9c95_a02a1dc56d3f
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2SharedWorkerCreatedEventArgs,
+    windows_core::IUnknown
+);
+impl ICoreWebView2SharedWorkerCreatedEventArgs {
+    pub unsafe fn Worker(&self) -> windows_core::Result<ICoreWebView2SharedWorker> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Worker)(
+                windows_core::Interface::as_raw(self),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2SharedWorkerCreatedEventArgs_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Worker: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2SharedWorkerCreatedEventArgs_Impl: windows_core::IUnknownImpl {
+    fn Worker(&self) -> windows_core::Result<ICoreWebView2SharedWorker>;
+}
+impl ICoreWebView2SharedWorkerCreatedEventArgs_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2SharedWorkerCreatedEventArgs_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Worker<
+            Identity: ICoreWebView2SharedWorkerCreatedEventArgs_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreWebView2SharedWorkerCreatedEventArgs_Impl::Worker(this) {
+                    Ok(ok__) => {
+                        value.write(core::mem::transmute(ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Worker: Worker::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2SharedWorkerCreatedEventArgs as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2SharedWorkerCreatedEventArgs {}
+windows_core::imp::define_interface!(
+    ICoreWebView2SharedWorkerCreatedEventHandler,
+    ICoreWebView2SharedWorkerCreatedEventHandler_Vtbl,
+    0x79cb8524_b842_551a_8d31_5f824b6955ed
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2SharedWorkerCreatedEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2SharedWorkerCreatedEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2SharedWorkerManager>,
+        P1: windows_core::Param<ICoreWebView2SharedWorkerCreatedEventArgs>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2SharedWorkerCreatedEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2SharedWorkerCreatedEventHandler_Impl: windows_core::IUnknownImpl {
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2SharedWorkerManager>,
+        args: windows_core::Ref<'_, ICoreWebView2SharedWorkerCreatedEventArgs>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2SharedWorkerCreatedEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2SharedWorkerCreatedEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2SharedWorkerCreatedEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorkerCreatedEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2SharedWorkerCreatedEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2SharedWorkerCreatedEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2SharedWorkerDestroyingEventHandler,
+    ICoreWebView2SharedWorkerDestroyingEventHandler_Vtbl,
+    0x5a459f84_fd04_5cce_a998_6fab56f09eeb
+);
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2SharedWorkerDestroyingEventHandler,
+    windows_core::IUnknown
+);
+impl ICoreWebView2SharedWorkerDestroyingEventHandler {
+    pub unsafe fn Invoke<P0, P1>(&self, sender: P0, args: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2SharedWorker>,
+        P1: windows_core::Param<windows_core::IUnknown>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).Invoke)(
+                windows_core::Interface::as_raw(self),
+                sender.param().abi(),
+                args.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2SharedWorkerDestroyingEventHandler_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub Invoke: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2SharedWorkerDestroyingEventHandler_Impl: windows_core::IUnknownImpl {
+    fn Invoke(
+        &self,
+        sender: windows_core::Ref<'_, ICoreWebView2SharedWorker>,
+        args: windows_core::Ref<'_, windows_core::IUnknown>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2SharedWorkerDestroyingEventHandler_Vtbl {
+    pub const fn new<
+        Identity: ICoreWebView2SharedWorkerDestroyingEventHandler_Impl,
+        const OFFSET: isize,
+    >() -> Self {
+        unsafe extern "system" fn Invoke<
+            Identity: ICoreWebView2SharedWorkerDestroyingEventHandler_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            sender: *mut core::ffi::c_void,
+            args: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorkerDestroyingEventHandler_Impl::Invoke(
+                    this,
+                    core::mem::transmute_copy(&sender),
+                    core::mem::transmute_copy(&args),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            Invoke: Invoke::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2SharedWorkerDestroyingEventHandler as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2SharedWorkerDestroyingEventHandler {}
+windows_core::imp::define_interface!(
+    ICoreWebView2SharedWorkerManager,
+    ICoreWebView2SharedWorkerManager_Vtbl,
+    0x9b897103_d035_551f_892e_3e8f2916d03e
+);
+windows_core::imp::interface_hierarchy!(ICoreWebView2SharedWorkerManager, windows_core::IUnknown);
+impl ICoreWebView2SharedWorkerManager {
+    pub unsafe fn add_SharedWorkerCreated<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2SharedWorkerCreatedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_SharedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_SharedWorkerCreated(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_SharedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn GetSharedWorkers<P0>(&self, handler: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2GetSharedWorkersCompletedHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).GetSharedWorkers)(
+                windows_core::Interface::as_raw(self),
+                handler.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2SharedWorkerManager_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub add_SharedWorkerCreated: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_SharedWorkerCreated:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub GetSharedWorkers: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2SharedWorkerManager_Impl: windows_core::IUnknownImpl {
+    fn add_SharedWorkerCreated(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2SharedWorkerCreatedEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_SharedWorkerCreated(&self, token: i64) -> windows_core::Result<()>;
+    fn GetSharedWorkers(
+        &self,
+        handler: windows_core::Ref<'_, ICoreWebView2GetSharedWorkersCompletedHandler>,
+    ) -> windows_core::Result<()>;
+}
+impl ICoreWebView2SharedWorkerManager_Vtbl {
+    pub const fn new<Identity: ICoreWebView2SharedWorkerManager_Impl, const OFFSET: isize>() -> Self
+    {
+        unsafe extern "system" fn add_SharedWorkerCreated<
+            Identity: ICoreWebView2SharedWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorkerManager_Impl::add_SharedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_SharedWorkerCreated<
+            Identity: ICoreWebView2SharedWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorkerManager_Impl::remove_SharedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn GetSharedWorkers<
+            Identity: ICoreWebView2SharedWorkerManager_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2SharedWorkerManager_Impl::GetSharedWorkers(
+                    this,
+                    core::mem::transmute_copy(&handler),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            add_SharedWorkerCreated: add_SharedWorkerCreated::<Identity, OFFSET>,
+            remove_SharedWorkerCreated: remove_SharedWorkerCreated::<Identity, OFFSET>,
+            GetSharedWorkers: GetSharedWorkers::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2SharedWorkerManager as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2SharedWorkerManager {}
 windows_core::imp::define_interface!(
     ICoreWebView2ShowSaveAsUICompletedHandler,
     ICoreWebView2ShowSaveAsUICompletedHandler_Vtbl,
@@ -43037,6 +46500,174 @@ impl ICoreWebView2_28_Vtbl {
     }
 }
 impl windows_core::RuntimeName for ICoreWebView2_28 {}
+windows_core::imp::define_interface!(
+    ICoreWebView2_29,
+    ICoreWebView2_29_Vtbl,
+    0x650f917e_cc16_5c8c_9287_b0bbc8a4ab2c
+);
+impl core::ops::Deref for ICoreWebView2_29 {
+    type Target = ICoreWebView2_28;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(
+    ICoreWebView2_29,
+    windows_core::IUnknown,
+    ICoreWebView2,
+    ICoreWebView2_2,
+    ICoreWebView2_3,
+    ICoreWebView2_4,
+    ICoreWebView2_5,
+    ICoreWebView2_6,
+    ICoreWebView2_7,
+    ICoreWebView2_8,
+    ICoreWebView2_9,
+    ICoreWebView2_10,
+    ICoreWebView2_11,
+    ICoreWebView2_12,
+    ICoreWebView2_13,
+    ICoreWebView2_14,
+    ICoreWebView2_15,
+    ICoreWebView2_16,
+    ICoreWebView2_17,
+    ICoreWebView2_18,
+    ICoreWebView2_19,
+    ICoreWebView2_20,
+    ICoreWebView2_21,
+    ICoreWebView2_22,
+    ICoreWebView2_23,
+    ICoreWebView2_24,
+    ICoreWebView2_25,
+    ICoreWebView2_26,
+    ICoreWebView2_27,
+    ICoreWebView2_28
+);
+impl ICoreWebView2_29 {
+    pub unsafe fn add_DedicatedWorkerCreated<P0>(
+        &self,
+        eventhandler: P0,
+        token: *mut i64,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ICoreWebView2DedicatedWorkerCreatedEventHandler>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).add_DedicatedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                eventhandler.param().abi(),
+                token as _,
+            )
+            .ok()
+        }
+    }
+    pub unsafe fn remove_DedicatedWorkerCreated(&self, token: i64) -> windows_core::Result<()> {
+        unsafe {
+            (windows_core::Interface::vtable(self).remove_DedicatedWorkerCreated)(
+                windows_core::Interface::as_raw(self),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICoreWebView2_29_Vtbl {
+    pub base__: ICoreWebView2_28_Vtbl,
+    pub add_DedicatedWorkerCreated: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub remove_DedicatedWorkerCreated:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+pub trait ICoreWebView2_29_Impl: ICoreWebView2_28_Impl {
+    fn add_DedicatedWorkerCreated(
+        &self,
+        eventhandler: windows_core::Ref<'_, ICoreWebView2DedicatedWorkerCreatedEventHandler>,
+        token: *mut i64,
+    ) -> windows_core::Result<()>;
+    fn remove_DedicatedWorkerCreated(&self, token: i64) -> windows_core::Result<()>;
+}
+impl ICoreWebView2_29_Vtbl {
+    pub const fn new<Identity: ICoreWebView2_29_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn add_DedicatedWorkerCreated<
+            Identity: ICoreWebView2_29_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            eventhandler: *mut core::ffi::c_void,
+            token: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2_29_Impl::add_DedicatedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&eventhandler),
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn remove_DedicatedWorkerCreated<
+            Identity: ICoreWebView2_29_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICoreWebView2_29_Impl::remove_DedicatedWorkerCreated(
+                    this,
+                    core::mem::transmute_copy(&token),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: ICoreWebView2_28_Vtbl::new::<Identity, OFFSET>(),
+            add_DedicatedWorkerCreated: add_DedicatedWorkerCreated::<Identity, OFFSET>,
+            remove_DedicatedWorkerCreated: remove_DedicatedWorkerCreated::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreWebView2_29 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_2 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_3 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_4 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_5 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_6 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_7 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_8 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_9 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_10 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_11 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_12 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_13 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_14 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_15 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_16 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_17 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_18 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_19 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_20 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_21 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_22 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_23 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_24 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_25 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_26 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_27 as windows_core::Interface>::IID
+            || iid == &<ICoreWebView2_28 as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for ICoreWebView2_29 {}
 windows_core::imp::define_interface!(
     ICoreWebView2_3,
     ICoreWebView2_3_Vtbl,
