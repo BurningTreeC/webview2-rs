@@ -1019,7 +1019,7 @@ pub const COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS_SHARED_WORKER:
     COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS =
     COREWEBVIEW2_WEB_RESOURCE_REQUEST_SOURCE_KINDS(2i32);
 pub const CORE_WEBVIEW_TARGET_PRODUCT_VERSION: windows_core::PCWSTR =
-    windows_core::w!("151.0.4129.50");
+    windows_core::w!("152.0.4191.47");
 windows_core::imp::define_interface!(
     ICoreWebView2,
     ICoreWebView2_Vtbl,
